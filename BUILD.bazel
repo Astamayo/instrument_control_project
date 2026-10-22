@@ -1,0 +1,24 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_library(
+    name = "logger",
+    srcs = [
+        "include/smu/logs/logInterface/log_interface.cpp",
+    ],
+    hdrs = [
+        "include/smu/logs/logInterface/log_interface.hpp",
+    ],
+    includes = ["include"],
+    deps = [
+        "@nlohmann_json//:json",
+        "@spdlog//:spdlog",
+    ],
+)
+
+cc_binary(
+    name = "instrument_control_app",
+    srcs = ["app/main.cpp"],
+    copts = ["-std=c++17"],
+    visibility = ["//visibility:public"],
+    deps = [":logger"],
+)

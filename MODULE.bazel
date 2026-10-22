@@ -1,0 +1,9 @@
+module(
+    name = "instrument_control_project",
+    version = "0.1.0",
+)
+
+bazel_dep(name = "rules_cc", version = "0.2.17")
+
+deps = use_extension("//:repositories.bzl", "deps")
+use_repo(deps, "nlohmann_json", "spdlog")
